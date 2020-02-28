@@ -1,34 +1,49 @@
-# 20. Valid Parentheses
+# Implement Queue by Linked List
 #-------------------------------------------------------------------------------
 #    Approach   
 #-------------------------------------------------------------------------------
 
 """
-stack
+Using linked list to implement queue
 
 """
 
 #-------------------------------------------------------------------------------
 #    Soluton
 #-------------------------------------------------------------------------------
-class Solution(object):
-    def isValid(self, s):
-        """
-        :type s: str
-        :rtype: bool
-        """
-        stack = []
-        mapping = {")": "(", "}": "{"}
+class MyQueue:
 
-        for c in s:
-            if c in mapping:
-                top_element = stack.pop()
-                if mapping[c] != top_element:
-                    return False
-            else:
-                stack.append(c)
+    def __init__(self):
+        ## do intialization if neccessary
+    """
+    @param: item: An integer
+    @return: nothing
+    """
+        self.dummy =  ListNode(-1)
+        self.tail = self.dummy
 
-        return not stack
+    def enqueue(self, item):
+        node = ListNode(item)
+        self.tail.next = node
+        self.tail = node
+
+    """
+    @return: An integer
+    """
+    def dequeue(self):
+        #record the value before deleting it
+        item = self.dummy.next.val
+        self.dummy.next = self.dummy.next.next
+        # case when delete node is the last node in the linked list. delete the last node
+        if self.dummy.next = None:
+            self.tail = self.dummy
+        retun item
+
+    def empty(self):
+        return self.dummy.next is None
+
+
+
         
 
 

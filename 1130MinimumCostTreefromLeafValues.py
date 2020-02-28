@@ -1,9 +1,10 @@
 # 437. Path Sum III
-#You are given a binary tree in which each node contains an integer value.
-#Find the number of paths that sum to a given value.
-#The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).
-#The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000.
-#-------------------------------------------------------------------------------
+# Given an array arr of positive integers, consider all binary trees such that:
+
+# Each node has either 0 or 2 children;
+# The values of arr correspond to the values of each leaf in an in-order traversal of the tree.  (Recall that a node is a leaf if and only if it has 0 children.)
+# The value of each non-leaf node is equal to the product of the largest leaf value in its left and right subtree respectively.
+# Among all possible binary trees considered, return the smallest possible sum of the values of each non-leaf node.  It is guaranteed this sum fits into a 32-bit integer.#-------------------------------------------------------------------------------
 #    Approach   
 #-------------------------------------------------------------------------------
 
@@ -11,22 +12,6 @@
 DFS + TwoSum
 
 """
-#-------------------------------------------------------------------------------
-#    Test
-#-------------------------------------------------------------------------------
-class TreeNode:
-    def __init__(self, val):
-        self.val = val
-        self.left = None
-        self.right = None
-        
-        
-test_tree = TreeNode(3)
-test_tree.left = TreeNode(3)
-test_tree.right = TreeNode(-4)
-test_tree.left.left = TreeNode(5)
-test_tree.left.right = TreeNode(6)
-test_tree.right.left = TreeNode(7)
 
 #-------------------------------------------------------------------------------
 #    Soluton1 - DFS Template Method
