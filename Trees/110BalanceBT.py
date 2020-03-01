@@ -1,7 +1,8 @@
 #110. Balanced Binary Tree
 #Given a binary tree, determine if it is height-balanced.
 #For this problem, a height-balanced binary tree is defined as:
-#a binary tree in which the left and right subtrees of every node differ in height by no more than 1.
+#a binary tree in which the left and right subtrees of every node differ in height 
+#by no more than 1.
 #-------------------------------------------------------------------------------
 #    Approach   
 #-------------------------------------------------------------------------------
@@ -20,21 +21,21 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[str]
         """
-        if not root:
-            return []
+        # if not root:
+        #     return []
         
-        paths = []
-        stack = [(root,str(root.val))]
-        while stack:
-            node, path = stack.pop()
-            if not node.left and not node.right:
-                paths.append(path)
-            if node.left:
-                stack.append((node.left, path +'->'+str(node.left.val)))
-            if node.right:
-                stack.append((node.right, path +'->'+str(node.right.val)))
+        # paths = []
+        # stack = [(root,str(root.val))]
+        # while stack:
+        #     node, path = stack.pop()
+        #     if not node.left and not node.right:
+        #         paths.append(path)
+        #     if node.left:
+        #         stack.append((node.left, path +'->'+str(node.left.val)))
+        #     if node.right:
+        #         stack.append((node.right, path +'->'+str(node.right.val)))
                 
-        return paths
+        # return paths
 
 #-------------------------------------------------------------------------------
 #    Soluton2 ---D & C
