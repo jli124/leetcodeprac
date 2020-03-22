@@ -24,7 +24,7 @@ class Solution(object):
             
         return output
 #-------------------------------------------------------------------------------
-#    Solution 2 - BackTrack
+#    Solution 2 - Dfs
 #-------------------------------------------------------------------------------
 class Solution(object):
     def subsets(self, nums):
@@ -32,16 +32,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-    def backtrack(first= 0, curr = []):
-        if len(curr) == k:
-            output.append(curr[:])
-        for i in range(first, n):
-            curr.append(nums[i])
-            backtrack(i + 1, curr)
-            curr.pop()
-        
-    output = []
-    n = len(nums)
-    for k in range(n+1):
-        backtrack()
-    return output
+
+    def dfs(self, nums, index, path, res):
+        res.append(path)
+        for i in range(index, len(nums)):
+            self.dfs(nums, i+1, path+[nums[i]], res)
