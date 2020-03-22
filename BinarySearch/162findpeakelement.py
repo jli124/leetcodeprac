@@ -9,7 +9,7 @@ Binary search
 """
 
 #-------------------------------------------------------------------------------
-#    Soluton
+#    Soluton - Iterative O(logn)
 #-------------------------------------------------------------------------------
 class Solution(object):
     def findPeakElement(self, nums):
