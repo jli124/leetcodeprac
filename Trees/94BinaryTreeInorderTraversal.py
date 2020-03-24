@@ -7,6 +7,7 @@ Given a binary tree, return the inorder traversal of its nodes' values.
 #-------------------------------------------------------------------------------
 
 """
+Inorder: Left, root, right
 Recursion
 Iteration:
      the second time visited a node using the algorithm to append stack can acchive binary tree inorder traversal.
@@ -43,7 +44,7 @@ class Solution(object):
                     
         
 #-------------------------------------------------------------------------------
-#    Soluton 2 -- Iteration
+#    Soluton 2 -- Iteration O(n)
 #-------------------------------------------------------------------------------
 # Definition for a binary tree node.
 # class TreeNode(object):
