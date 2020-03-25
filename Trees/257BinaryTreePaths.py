@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 
 """
-Iterative: root, left, right
+Iterative
 
 """
 
@@ -21,7 +21,7 @@ class Solution(object):
             return []
         
         paths = []
-        stack = [(root,str(root.val))]
+        stack,  = [(root,str(root.val))]
         while stack:
             node, path = stack.pop()
             if not node.left and not node.right:

@@ -20,13 +20,16 @@ Iterative: root, left, right
 
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:
+        # global maximum
         self.maxDepth = 0
         def dfs(root, depth):
             if not root:return
             if not root.left and not root.right:
                 self.maxDepth = max(self.maxDepth, depth)
-            if root.left:dfs(root.left, depth+1)
-            if root.right:dfs(root.right, depth+1)
+            if root.left:
+                dfs(root.left, depth+1)
+            if root.right:
+                dfs(root.right, depth+1)
         dfs(root, 1)
         return self.maxDepth
 
