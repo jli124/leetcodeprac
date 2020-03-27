@@ -15,30 +15,10 @@ Iterative: root, left, right
 #-------------------------------------------------------------------------------
 #    Soluton1 ---Iterative
 #-------------------------------------------------------------------------------
-class Solution(object):
-    def binaryTreePaths(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[str]
-        """
-        # if not root:
-        #     return []
-        
-        # paths = []
-        # stack = [(root,str(root.val))]
-        # while stack:
-        #     node, path = stack.pop()
-        #     if not node.left and not node.right:
-        #         paths.append(path)
-        #     if node.left:
-        #         stack.append((node.left, path +'->'+str(node.left.val)))
-        #     if node.right:
-        #         stack.append((node.right, path +'->'+str(node.right.val)))
-                
-        # return paths
+
 
 #-------------------------------------------------------------------------------
-#    Soluton2 ---D & C
+#    Soluton2 ---Recursice D & C
 #-------------------------------------------------------------------------------
 # Definition for a binary tree node.
 # class TreeNode(object):
