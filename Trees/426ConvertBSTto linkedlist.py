@@ -12,43 +12,27 @@ Iterative: root, left, right
 #-------------------------------------------------------------------------------
 #    Soluton1 ---D & C
 #-------------------------------------------------------------------------------
-"""
-# Definition for a Node.
-class Node(object):
-    def __init__(self, val, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-"""
 class Solution(object):
+    head = None
+    prev = None
+
     def treeToDoublyList(self, root):
-        """
-        :type root: Node
-        :rtype: Node
-        """
-        def helper(node):
-            """
-            performs standard inorder traversal:
-            left to node to right
-            and links all nodes into DLL
-            """
-            nonlocal last,first
-            if node:
-                helper(node.left)
-                if last:
-                    last.right = node
-                    node.left = last
-                else:
-                    first = node
-                last = node
-                helper(node.right)
+        if not root: return None
+        self.treeToDoublyListHelper(root)
+        self.prev.right = self.head
+        self.head.left = self.prev
+        return self.head
+
+    def treeToDoublyListHelper(self, node):
+        if not node: return
+        self.treeToDoublyListHelper(node.left)
+        if self.prev:
+            node.left = self.prev
+            self.prev.right = node
+        else:  # We are at the head.
+            self.head = node
+        self.prev = node
+        self.treeToDoublyListHelper(node.right)
                 
-        if not root:
-            return None
-        # the smallest and largest nodes
-        first, last = None, None
-        helper(root)
-        last.right = first
-        first.left = last
-        return first
+
         
