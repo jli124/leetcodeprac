@@ -11,16 +11,26 @@ DFS, union-find
 #-------------------------------------------------------------------------------
 #    Soluton1 ---DFS, adjacent list
 #-------------------------------------------------------------------------------
-def validTree(self, n, edges):
-    neighbors = {i: [] for i in range(n)}
-    for v, w in edges:
-        neighbors[v] += w,
-        neighbors[w] += v,
-    def visit(v):
-        map(visit, neighbors.pop(v,[]))
-    visit(0)
-    ##check for n-1 edges and connectivity
-    return len(edges) == n-1 and not neighbors
+class Solution():
+    def validTree(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: bool
+        """
+        neighbors = {i: [] for i in range(n)}
+
+        for v, w in edges:
+            neighbors[v] += w,
+            neighbors[w] += v,
+        print(neighbors) 
+
+        def visit(v):
+            map(visit, neighbors.pop(v,[]))
+        visit(0)
+        print(neighbors)
+        ##check for n-1 edges and connectivity
+        return len(edges) == n-1 and not neighbors
 
 #-------------------------------------------------------------------------------
 #    Soluton2 ---Recursive
@@ -29,4 +39,7 @@ def validTree(self, n, edges):
 #-------------------------------------------------------------------------------
 #    Test
 #-------------------------------------------------------------------------------
-
+n = 5
+edges = [[0,1], [0,2], [0,3], [1,4]]
+soln = Solution()
+print(soln.validTree(n,edges))

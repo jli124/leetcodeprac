@@ -18,13 +18,14 @@ Breadth first search + queue could be used
 #-------------------------------------------------------------------------------
 """
 # Definition for a Node.
-class Node(object):
+"""
+class Node():
     def __init__(self, val = 0, neighbors = []):
         self.val = val
         self.neighbors = neighbors
-"""
+
 from collections import deque
-class Solution(object):
+class Solution():
         
     def cloneGraph(self, node):
         """
@@ -35,7 +36,6 @@ class Solution(object):
             return node
         # dictionary used to save visited node and clone as key value pair.
         visited = {}
-        
         # put the first node into the queue
         queue = deque([node])
         # Clone the node and put it in the visited dictionary
@@ -62,3 +62,5 @@ class Solution(object):
 #    Test
 #-------------------------------------------------------------------------------
 
+soln = Solution()
+print(soln.cloneGraph(node))

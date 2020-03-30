@@ -15,7 +15,7 @@ is it possible for you to finish all courses?
 #-------------------------------------------------------------------------------
 
 """
-bfs
+topological order, bfs
 """
 
 #-------------------------------------------------------------------------------
@@ -29,21 +29,24 @@ class Solution():
         :type prerequisites: List[List[int]]
         :rtype: bool
         """
-        edges = [[] for i in range(numCourses)]
-        degrees = [0] * numCourses
+        edges = [[] for i in range(numCourses)]  # use edge to store the relationship between the two courses
+        indegrees = [0] * numCourses # use degrees (list) to store the indegree of the courses in order
         for course, precourse in prerequisites:
             edges[precourse].append(course)
-            degrees[course] += 1
+            indegrees[course] += 1
 
-        queue = collections.deque(course for course, degree in enumerate(degrees) if not degree)
+        # add the queue to the initial queue if the course has indegree of 0
+        queue = collections.deque(course for course, indegree in enumerate(indegrees) if not indegree)
         while queue:
             course = queue.popleft()
             for next_course in edges[course]:
-                degrees[next_course] -= 1
-                if not degrees[next_course]:
+                # after checking the previous level of courses, process to next level and  - 1
+                indegrees[next_course] -= 1
+                # if the indegree is equal to 0 add to the queue
+                if not indegrees[next_course]:
                     queue.append(next_course)
 
-        return not sum(degrees)
+        return not sum(indegrees)
 
 #-------------------------------------------------------------------------------
 #    Test
