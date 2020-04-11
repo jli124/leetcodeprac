@@ -1,4 +1,4 @@
-# 183. Customers Who Never Order
+# 184. Deparment Highest Salary
 #-------------------------------------------------------------------------------
 #    Approach   
 #-------------------------------------------------------------------------------
@@ -8,21 +8,24 @@
 #-------------------------------------------------------------------------------
 #    Soluton1
 #-------------------------------------------------------------------------------
-SELECT Name Customer
-FROM Customers
-WHERE Id NOT IN (
-	SELECT Id 
-	FROM orders)
+SELECT dep.Name Department,
+		em.Name Employee,
+		em.Salary Salary
+FROM Employee em
+LEFT JOIN Department dep
+ON em.DepartmentId = dep.Id
+WHERE (dep.Id, em.Salary) IN (
+	SELECT DepartmentId, MAX(Salary)
+	FROM Employee
+	GROUP BY DepartmentId
+)
+
+
 ;
+
 
 
 #-------------------------------------------------------------------------------
 #    Soluton2
 #-------------------------------------------------------------------------------
 
-/* Write your MySQL query statement below */
-select name as Customers
-from Customers c
-left join Orders o
-on c.Id = o.CustomerID
-where o.CustomerId is NULL;
