@@ -51,5 +51,34 @@ class Solution(object):
 #-------------------------------------------------------------------------------
 #    Soluton2 - Recursive, O(n) and O(n)
 #-------------------------------------------------------------------------------
-
+class Solution(object):
+    def reverseKGroup(self, head, k):
+        """
+        :type head: ListNode
+        :type k: int
+        :rtype: ListNode
+        """
+        count = 0
+        prev = head
+        while count < k and prev:
+            prev = prev.next
+            count += 1
+        if count == k:
+            rev_head = self.reverseLinkedList(head,k)
+            head.next = self.reverseKGroup(prev, k)  
+            return rev_head
+        return head
+    
+    def reverseLinkedList(self, head, k):
+        curr, prev = None, head
+        
+        while k:
+            temp = prev.next
+            prev.next = curr
+            curr = prev
+            prev = temp
+            k -= 1
+        return curr
+    
+    
 
