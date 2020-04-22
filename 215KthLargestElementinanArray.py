@@ -13,7 +13,7 @@ heap
 """
 
 #-------------------------------------------------------------------------------
-#    Soluton1 - sorting O(nk)
+#    Soluton1 - sorting O(n2)
 #-------------------------------------------------------------------------------
 import heapq
 # class Solution():
@@ -24,20 +24,20 @@ import heapq
 #         :rtype: int
 #         """
 #         # only need to sort till k
-        for i in xrange(len(nums), len(nums) - k, -1):
-            tmp = 0
-            # for element before index i, find the max and put at i-1 position
-            for j in xrange(i):
-                if nums[j] > nums[tmp]:
-                    tmp = j
-                    nums[tmp], nums[i-1] = nums[i-1], nums[tmp]
-            return nums[len(nums) - k]
+#         for i in range(len(nums), len(nums) - k, -1):
+#             tmp = 0
+#             # for element before index i, find the max and put at i-1 position
+#             for j in range(i):
+#                 if nums[j] > nums[tmp]:
+#                     tmp = j
+#                     nums[tmp], nums[i-1] = nums[i-1], nums[tmp]
+#             return nums[len(nums) - k]
 
         
                     
         
 #-------------------------------------------------------------------------------
-#    Soluton2 - min-heap
+#    Soluton2 - min-heap O(nlogk)
 #-------------------------------------------------------------------------------
 class Solution():
     def findKthLargest(self, nums, k):
@@ -49,8 +49,10 @@ class Solution():
         heap = []
         for num in nums:
             heapq.heappush(heap, num)
-        for _ in xrange(len(nums) - k):
+            #print(heap)
+        for _ in range(len(nums) - k):
             heapq.heappop(heap)
+            #print(heap)
         return heapq.heappop(heap)
 
         #return heapq.nlargest(k, nums)[k-1]
