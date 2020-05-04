@@ -27,19 +27,21 @@ class Solution(object):
         :type root: TreeNode
         :rtype: float
         """
-        self.res = 0
-        def helper(root):
-            if not root:
-                return [0, 0.0]
-            n_left, sum_left = helper(root.left)
-            n_right, sum_right = helper(root.right)
-            n_total = n_left + n_right + 1
-            sum_total = sum_left + sum_right + root.val
-            self.res = max(self.res, sum_total/n_total)
-            return [n_total, sum_total]
-            
-        helper(root)
-        return self.res
+        self.maxavg = 0
+        self.sum_subtree(root)
+        return self.maxavg
+    
+    def sum_subtree(self, node):
+        if not node: return [0.0, 0]
+        sum_left, n_left = self.sum_subtree(node.left)
+        sum_right, n_right = self.sum_subtree(node.right)
+        n_total = n_left + n_right + 1
+        sum_total = sum_left + sum_right + node.val
+        self.maxavg = max(self.maxavg, sum_total/n_total)
+        return [sum_total, n_total]
+
+
+
 
 
 
