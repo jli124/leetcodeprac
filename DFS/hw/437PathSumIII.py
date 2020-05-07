@@ -75,28 +75,32 @@ class Solution(object):
 #-------------------------------------------------------------------------------
     def pathSumBetter(self, root, target):
         # define global result and path
-        self.result = 0
+        self.res = 0
         cache = {0:1}
         
         # recursive to get result
         self.dfs(root, target, 0, cache)
         
         # return result
-        return self.result
+        return self.res
+
     
-    def dfs(self, root, target, currPathSum, cache):
+    def dfs(self, node, target_sum, currPathSum, cache):
         # exit condition
-        if root is None:
-            return  
+        if node is None:
+        	return 
+ 
         # calculate currPathSum and required oldPathSum
-        currPathSum += root.val
-        oldPathSum = currPathSum - target
+        currPathSum += node.val
+        oldPathSum = currPathSum - target_sum
+
         # update result and cache
-        self.result += cache.get(oldPathSum, 0)
-        cache[currPathSum] = cache.get(currPathSum, 0) + 1
-        
+        self.res += cache.get(oldPathSum, 0)
+        cache[currPathSum] = cache.get(currPathSum,0) + 1
+
         # dfs breakdown
-        self.dfs(root.left, target, currPathSum, cache)
-        self.dfs(root.right, target, currPathSum, cache)
+        self.dfs(node.left, target_sum, currPathSum, cache)
+        self.dfs(node.right, target_sum, currPathSum, cache)
+ 
         # when move to a different branch, the currPathSum is no longer available, hence remove one. 
-        cache[currPathSum] -= 1
+   		cache[currPathSum] -= 1

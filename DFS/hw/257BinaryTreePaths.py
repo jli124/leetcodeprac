@@ -36,26 +36,32 @@ class Solution(object):
 #-------------------------------------------------------------------------------
 #    Soluton2 ---D & C
 #-------------------------------------------------------------------------------
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
 class Solution(object):
     def binaryTreePaths(self, root):
         """
         :type root: TreeNode
         :rtype: List[str]
         """
-        def construct_paths(root, path):
-            if root:
-                path += str(root.val)
-                if not root.left and not root.right:
-                    paths.append(path)
-                else:
-                    path += '->'
-                    construct_paths(root.left, path)
-                    construct_paths(root.right, path)
+        self.paths = []
+        self.dfs(root, '')
+        return self.paths
+    
+    def dfs(self, node, path):
         
-        paths = []
-        construct_paths(root,'')
-        return paths
-#-------------------------------------------------------------------------------
-#    Test
-#-------------------------------------------------------------------------------
+        if node:
+            path += str(node.val)
+            if not node.left and not node.right: 
+                self.paths.append(path)  
+            else:
+                path += '->'  # extend the current path
+                self.dfs(node.left, path)
+                self.dfs(node.right, path)
+
 
