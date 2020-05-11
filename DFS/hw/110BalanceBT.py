@@ -33,17 +33,17 @@ class Solution(object):
         :type root: TreeNode
         :rtype: bool
         """
-        return self.isBalancedHelper(root)[0]
+        return self.dfs(root)[0]
     
-    def isBalancedHelper(self, root):
+    def dfs(self, root):
         # Empty tree balanced and height -1
         if not root:
             return True, -1
 
-        leftIsBalanced, leftHeight = self.isBalancedHelper(root.left)
+        leftIsBalanced, leftHeight = self.dfs(root.left)
         if not leftIsBalanced:
             return False, 0  
-        rightIsBalanced, rightHeight = self.isBalancedHelper(root.right)
+        rightIsBalanced, rightHeight = self.dfs(root.right)
         if not rightIsBalanced:
             return False, 0
             
