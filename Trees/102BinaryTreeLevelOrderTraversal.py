@@ -32,11 +32,10 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[List[int]]
         """
-        levels = []
         if not root:
             return levels
         
-        level = 0
+        level, levels = 0, []
         queue = collections.deque([root,])
         while queue:
             levels.append([])
