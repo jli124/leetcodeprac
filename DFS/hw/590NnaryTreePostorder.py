@@ -37,9 +37,10 @@ class Solution(object):
     
     def dfs(self, root, res):
             if root:
+                res.append(root.val)
                 for child in root.children:
                     self.dfs(child,res)
-                res.append(root.val)
+                res.append(root.val) # add the root value last 
            
 #-------------------------------------------------------------------------------
 #    Soluton 2 -- Iteration O(n)
