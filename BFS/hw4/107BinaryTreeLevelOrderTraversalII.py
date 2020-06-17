@@ -1,61 +1,59 @@
-#102. Binary Tree Level Order Traversal
-'''
-Given a binary tree, return the level order traversal of its nodes' values. 
-(ie, from left to right, level by level).
+#107. Binary Tree Level Order Traversal II
+"""
+Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
 
 For example:
 Given binary tree [3,9,20,null,null,15,7],
-'''
+
+return its bottom-up level order traversal as:
+"""
 #-------------------------------------------------------------------------------
 #    Approach   
 #-------------------------------------------------------------------------------
 
 """
-
-
+bfs
+preorder travesal recursion
 """
 
 #-------------------------------------------------------------------------------
-#    Soluton 1 - Iterative
+#    Soluton1 --- BFS 
 #-------------------------------------------------------------------------------
 # Definition for a binary tree node.
 # class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution(object):
-    import collections
-    def levelOrder(self, root):
+    def levelOrderBottom(self, root):
         """
         :type root: TreeNode
         :rtype: List[List[int]]
         """
+        levels = []
         if not root:
             return levels
         
-        level, levels = 0, []
-        queue = collections.deque([root,])
-        while queue:
-            levels.append([])
-            level_length = len(queue)
-            
-            for i in range(level_length):
-                node = queue.popleft()
-                levels[level].append(node.val)
+        def bfs(node, level):
+            if len(levels) == level:
+                levels.append([])
                 
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-            level += 1
+            levels[level].append(node.val)
+            
+            if node.left:
+                bfs(node.left, level + 1)
+            
+            if node.right:
+                bfs(node.right, level + 1)
+            
+        bfs(root, 0)
+        return levels[::-1]
+                
         
-        return levels
 #-------------------------------------------------------------------------------
-#    Soluton 2 -- Iterative
+#    Soluton2 ---Recursive
 #-------------------------------------------------------------------------------
-               
 
 #-------------------------------------------------------------------------------
 #    Test
